@@ -55,7 +55,7 @@ const getBooks = async () => {
   // add content for the card: 
   cardDiv.innerHTML = `<div class="row g-0">
     <div class="col-md-4">
-      <img src="https://covers.openlibrary.org/b/id/" + ${book.cover_id} + "-L.jpg" class="img-fluid rounded-start" alt="${book.cover_id}">
+      <img src="https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg" class="img-fluid rounded-start" alt="${book.cover_id}">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -64,7 +64,7 @@ const getBooks = async () => {
      
         <div>
         
-          <p> ${book.availability.is_readable ? 'You can borrow it' : "You cannot borrow it"} </p>
+          <p> ${book.availability.available_to_borrow ? 'You can borrow it' : "You cannot borrow it"} </p>
         </div>
         <p class="card-text"><small class="text-body-secondary">${book.first_publish_year}</small></p>
       </div>
