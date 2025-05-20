@@ -3,8 +3,8 @@ import { books } from "./booksData.js"
 // export default
 import changeStatus from "./changeStatus.js"
 
-// Loop through the array: 
-books.forEach((book) => {
+let createBookCard = (book) => {
+
   // Build cards using js:
   let cardDiv = document.createElement('div')
   // Add styling
@@ -30,11 +30,35 @@ books.forEach((book) => {
     </div>
   </div>`
   document.querySelector('.collection-list').append(cardDiv)
-})
+}
+// Loop through the array: 
+books.forEach((book) => createBookCard(book))
 
 // Add listner to all status buttons: 
 
 let statusButtons = document.querySelectorAll('.statusButton')
 statusButtons.forEach(button => {
   button.addEventListener('click', changeStatus)
+})
+
+// Input to add more books: 
+
+let newBookField = document.querySelector('#addBook')
+
+// Demo with enter to see an other event!
+newBookField.addEventListener('keypress', (event ) => {
+  if (event.key === "Enter") {
+  let newBook = event.target.value
+  if (newBook.length)  {
+    // just to demo adding data to the array, we don't store it anywhere
+    books.push({title: newBook}) 
+    // create a card for the new book
+    createBookCard({title: newBook})
+    // add eent handler to the new button created in the function createBookCard.
+    let buttons = document.querySelectorAll('.statusButton')
+    let newButton = buttons[buttons.length-1]
+    newButton.addEventListener('click', changeStatus)
+
+  }
+}
 })
